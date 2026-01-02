@@ -26,3 +26,12 @@ data class User(
 data class ErrorResponse(
     val error: String
 )
+
+data class RegisterPushTokenRequest(
+    val token: String,
+    val platform: String = "android"
+)
+
+data class PushTokenResponse(
+    val success: Boolean
+)

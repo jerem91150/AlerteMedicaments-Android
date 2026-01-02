@@ -32,6 +32,7 @@ sealed class Screen(
     object Map : Screen("map", "Pharmacies", Icons.Filled.LocalPharmacy, Icons.Outlined.LocalPharmacy)
     object Profile : Screen("profile", "Profil", Icons.Filled.Person, Icons.Outlined.Person)
     object Auth : Screen("auth", "Connexion", Icons.Filled.Login, Icons.Outlined.Login)
+    object Ocr : Screen("ocr", "Scanner", Icons.Filled.DocumentScanner, Icons.Outlined.DocumentScanner)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -103,7 +104,13 @@ fun MainNavigation() {
             startDestination = Screen.Search.route,
             modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding())
         ) {
-            composable(Screen.Search.route) { SearchScreen() }
+            composable(Screen.Search.route) {
+                SearchScreen(
+                    onNavigateToOcr = {
+                        navController.navigate(Screen.Ocr.route)
+                    }
+                )
+            }
             composable(Screen.Alerts.route) {
                 AlertsScreen(
                     onNavigateToAuth = {
@@ -123,6 +130,22 @@ fun MainNavigation() {
                 AuthScreen(
                     onAuthSuccess = {
                         navController.popBackStack()
+                    }
+                )
+            }
+            composable(Screen.Ocr.route) {
+                OcrScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    },
+                    onMedicationClick = { medication ->
+                        // Navigate to search with the medication name
+                        navController.navigate(Screen.Search.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                        }
                     }
                 )
             }

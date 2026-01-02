@@ -33,7 +33,8 @@ import com.alertemedicaments.ui.theme.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
-    viewModel: SearchViewModel = hiltViewModel()
+    viewModel: SearchViewModel = hiltViewModel(),
+    onNavigateToOcr: () -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -96,54 +97,76 @@ fun SearchScreen(
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // Search Bar
-                Surface(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .shadow(8.dp, RoundedCornerShape(28.dp)),
-                    shape = RoundedCornerShape(28.dp),
-                    color = Color.White
+                // Search Bar with OCR Button
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    TextField(
-                        value = uiState.searchQuery,
-                        onValueChange = { viewModel.onSearchQueryChange(it) },
-                        modifier = Modifier.fillMaxWidth(),
-                        placeholder = {
-                            Text(
-                                "Rechercher un médicament...",
-                                color = Color.Gray
-                            )
-                        },
-                        leadingIcon = {
-                            Icon(
-                                Icons.Default.Search,
-                                contentDescription = null,
-                                tint = Teal600,
-                                modifier = Modifier.size(24.dp)
-                            )
-                        },
-                        trailingIcon = {
-                            if (uiState.searchQuery.isNotEmpty()) {
-                                IconButton(onClick = { viewModel.clearSearch() }) {
-                                    Icon(
-                                        Icons.Default.Clear,
-                                        contentDescription = "Effacer",
-                                        tint = Color.Gray
-                                    )
+                    Surface(
+                        modifier = Modifier
+                            .weight(1f)
+                            .shadow(8.dp, RoundedCornerShape(28.dp)),
+                        shape = RoundedCornerShape(28.dp),
+                        color = Color.White
+                    ) {
+                        TextField(
+                            value = uiState.searchQuery,
+                            onValueChange = { viewModel.onSearchQueryChange(it) },
+                            modifier = Modifier.fillMaxWidth(),
+                            placeholder = {
+                                Text(
+                                    "Rechercher un médicament...",
+                                    color = Color.Gray
+                                )
+                            },
+                            leadingIcon = {
+                                Icon(
+                                    Icons.Default.Search,
+                                    contentDescription = null,
+                                    tint = Teal600,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                            },
+                            trailingIcon = {
+                                if (uiState.searchQuery.isNotEmpty()) {
+                                    IconButton(onClick = { viewModel.clearSearch() }) {
+                                        Icon(
+                                            Icons.Default.Clear,
+                                            contentDescription = "Effacer",
+                                            tint = Color.Gray
+                                        )
+                                    }
                                 }
-                            }
-                        },
-                        singleLine = true,
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color.Transparent,
-                            unfocusedContainerColor = Color.Transparent,
-                            disabledContainerColor = Color.Transparent,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent
-                        ),
-                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                        keyboardActions = KeyboardActions(onSearch = { viewModel.search() })
-                    )
+                            },
+                            singleLine = true,
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = Color.Transparent,
+                                unfocusedContainerColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent
+                            ),
+                            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                            keyboardActions = KeyboardActions(onSearch = { viewModel.search() })
+                        )
+                    }
+
+                    // OCR Button
+                    Surface(
+                        modifier = Modifier.size(56.dp),
+                        shape = CircleShape,
+                        color = Color.White,
+                        shadowElevation = 8.dp,
+                        onClick = onNavigateToOcr
+                    ) {
+                        Icon(
+                            Icons.Outlined.DocumentScanner,
+                            contentDescription = "Scanner une ordonnance",
+                            tint = Teal600,
+                            modifier = Modifier.padding(14.dp)
+                        )
+                    }
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.alertemedicaments.data.api
 
+import com.alertemedicaments.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,10 +16,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    // For local development with emulator:
-    private const val BASE_URL = "http://10.0.2.2:3000/api/"
-    // For production, use:
-    // private const val BASE_URL = "https://alertemedicaments.vercel.app/api/"
+    // URL configured per build type in build.gradle.kts
+    // Debug: http://10.0.2.2:3000/api/ (local dev server)
+    // Release: https://alertemedicaments.vercel.app/api/ (production)
 
     @Provides
     @Singleton
@@ -39,7 +39,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.API_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

@@ -71,6 +71,19 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part image: okhttp3.MultipartBody.Part
     ): OcrResponse
+
+    // ==================== Push Notifications ====================
+    @POST("push-tokens/mobile")
+    suspend fun registerPushToken(
+        @Header("Authorization") token: String,
+        @Body request: RegisterPushTokenRequest
+    ): PushTokenResponse
+
+    @DELETE("push-tokens/mobile")
+    suspend fun deletePushToken(
+        @Header("Authorization") token: String,
+        @Query("token") pushToken: String
+    ): PushTokenResponse
 }
 
 data class ReportRequest(
