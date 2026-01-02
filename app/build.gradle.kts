@@ -83,6 +83,24 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // CameraX for OCR
+    implementation("androidx.camera:camera-camera2:1.3.1")
+    implementation("androidx.camera:camera-lifecycle:1.3.1")
+    implementation("androidx.camera:camera-view:1.3.1")
+
+    // ML Kit for OCR
+    implementation("com.google.mlkit:text-recognition:16.0.0")
+
+    // Firebase for Push Notifications
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-messaging-ktx")
+
+    // Coil for images
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
     // Permissions
     implementation("com.google.accompanist:accompanist-permissions:0.33.2-alpha")
 

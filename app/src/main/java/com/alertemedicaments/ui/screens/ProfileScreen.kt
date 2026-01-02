@@ -27,7 +27,9 @@ import com.alertemedicaments.ui.theme.Teal600
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(
+    onNavigateToAuth: () -> Unit = {}
+) {
     val context = LocalContext.current
     var pushNotifications by remember { mutableStateOf(true) }
     var emailAlerts by remember { mutableStateOf(false) }

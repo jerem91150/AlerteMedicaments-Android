@@ -31,6 +31,7 @@ sealed class Screen(
     object Alerts : Screen("alerts", "Alertes", Icons.Filled.Notifications, Icons.Outlined.Notifications)
     object Map : Screen("map", "Pharmacies", Icons.Filled.LocalPharmacy, Icons.Outlined.LocalPharmacy)
     object Profile : Screen("profile", "Profil", Icons.Filled.Person, Icons.Outlined.Person)
+    object Auth : Screen("auth", "Connexion", Icons.Filled.Login, Icons.Outlined.Login)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -103,9 +104,28 @@ fun MainNavigation() {
             modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding())
         ) {
             composable(Screen.Search.route) { SearchScreen() }
-            composable(Screen.Alerts.route) { AlertsScreen() }
+            composable(Screen.Alerts.route) {
+                AlertsScreen(
+                    onNavigateToAuth = {
+                        navController.navigate(Screen.Auth.route)
+                    }
+                )
+            }
             composable(Screen.Map.route) { MapScreen() }
-            composable(Screen.Profile.route) { ProfileScreen() }
+            composable(Screen.Profile.route) {
+                ProfileScreen(
+                    onNavigateToAuth = {
+                        navController.navigate(Screen.Auth.route)
+                    }
+                )
+            }
+            composable(Screen.Auth.route) {
+                AuthScreen(
+                    onAuthSuccess = {
+                        navController.popBackStack()
+                    }
+                )
+            }
         }
     }
 }
