@@ -28,7 +28,8 @@ import com.alertemedicaments.ui.theme.Teal600
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(
-    onNavigateToAuth: () -> Unit = {}
+    onNavigateToAuth: () -> Unit = {},
+    onNavigateToPrivacy: () -> Unit = {}
 ) {
     val context = LocalContext.current
     var pushNotifications by remember { mutableStateOf(true) }
@@ -144,6 +145,25 @@ fun ProfileScreen(
                 }
             }
 
+            // Privacy & Data Section
+            SectionTitle("Vie privée & Données")
+            SettingsCard {
+                SettingsItemRow(
+                    icon = Icons.Outlined.Security,
+                    iconColor = Color(0xFF059669),
+                    title = "Gérer mes données",
+                    subtitle = "Export, suppression, droits RGPD",
+                    onClick = onNavigateToPrivacy,
+                    trailing = {
+                        Icon(
+                            Icons.Default.ChevronRight,
+                            contentDescription = null,
+                            tint = Color.Gray
+                        )
+                    }
+                )
+            }
+
             // Family Section
             SectionTitle("Famille & Aidants")
             SettingsCard {
@@ -216,12 +236,16 @@ fun ProfileScreen(
                         iconColor = Color(0xFF6B7280),
                         title = "Politique de confidentialité",
                         subtitle = null,
-                        onClick = { /* TODO */ },
+                        onClick = {
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://alertemedicaments.vercel.app/privacy"))
+                            context.startActivity(intent)
+                        },
                         trailing = {
                             Icon(
-                                Icons.Default.ChevronRight,
+                                Icons.Default.OpenInNew,
                                 contentDescription = null,
-                                tint = Color.Gray
+                                tint = Color.Gray,
+                                modifier = Modifier.size(18.dp)
                             )
                         }
                     )

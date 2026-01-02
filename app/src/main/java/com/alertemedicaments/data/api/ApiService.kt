@@ -1,6 +1,8 @@
 package com.alertemedicaments.data.api
 
 import com.alertemedicaments.data.models.*
+import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
@@ -84,6 +86,18 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("token") pushToken: String
     ): PushTokenResponse
+
+    // ==================== RGPD / Privacy ====================
+    @GET("user/data-export")
+    suspend fun exportUserData(
+        @Header("Authorization") token: String
+    ): Response<ResponseBody>
+
+    @HTTP(method = "DELETE", path = "user/delete-account", hasBody = true)
+    suspend fun deleteAccount(
+        @Header("Authorization") token: String,
+        @Body request: DeleteAccountRequest
+    ): Response<DeleteAccountResponse>
 }
 
 data class ReportRequest(
@@ -101,4 +115,13 @@ data class OcrMedication(
     val dosage: String?,
     val quantity: String?,
     val matchedMedication: Medication?
+)
+
+data class DeleteAccountRequest(
+    val password: String,
+    val confirmPhrase: String
+)
+
+data class DeleteAccountResponse(
+    val message: String
 )

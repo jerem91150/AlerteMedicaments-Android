@@ -33,6 +33,7 @@ sealed class Screen(
     object Profile : Screen("profile", "Profil", Icons.Filled.Person, Icons.Outlined.Person)
     object Auth : Screen("auth", "Connexion", Icons.Filled.Login, Icons.Outlined.Login)
     object Ocr : Screen("ocr", "Scanner", Icons.Filled.DocumentScanner, Icons.Outlined.DocumentScanner)
+    object Privacy : Screen("privacy", "Vie privée", Icons.Filled.Security, Icons.Outlined.Security)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -123,6 +124,9 @@ fun MainNavigation() {
                 ProfileScreen(
                     onNavigateToAuth = {
                         navController.navigate(Screen.Auth.route)
+                    },
+                    onNavigateToPrivacy = {
+                        navController.navigate(Screen.Privacy.route)
                     }
                 )
             }
@@ -145,6 +149,18 @@ fun MainNavigation() {
                                 saveState = true
                             }
                             launchSingleTop = true
+                        }
+                    }
+                )
+            }
+            composable(Screen.Privacy.route) {
+                PrivacySettingsScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    },
+                    onLogout = {
+                        navController.navigate(Screen.Search.route) {
+                            popUpTo(0) { inclusive = true }
                         }
                     }
                 )
