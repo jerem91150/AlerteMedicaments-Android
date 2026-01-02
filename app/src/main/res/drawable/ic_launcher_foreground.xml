@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Pill/Capsule Icon for Medication App -->
+    <group
+        android:translateX="27"
+        android:translateY="27">
+        <!-- Pill body -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M27,10 C32.5,10 37,14.5 37,20 L37,34 C37,39.5 32.5,44 27,44 C21.5,44 17,39.5 17,34 L17,20 C17,14.5 21.5,10 27,10 Z"/>
+        <!-- Pill divider -->
+        <path
+            android:fillColor="#0D9488"
+            android:pathData="M17,27 L37,27 L37,34 C37,39.5 32.5,44 27,44 C21.5,44 17,39.5 17,34 Z"/>
+        <!-- Alert indicator -->
+        <path
+            android:fillColor="#EF4444"
+            android:pathData="M40,15 C40,12.2 42.2,10 45,10 C47.8,10 50,12.2 50,15 C50,17.8 47.8,20 45,20 C42.2,20 40,17.8 40,15 Z"/>
+    </group>
+</vector>

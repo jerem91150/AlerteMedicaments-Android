@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Alerte Médicaments</string>
+
+    <!-- Navigation -->
+    <string name="nav_search">Rechercher</string>
+    <string name="nav_alerts">Alertes</string>
+    <string name="nav_map">Carte</string>
+    <string name="nav_profile">Profil</string>
+
+    <!-- Search Screen -->
+    <string name="search_placeholder">Rechercher un médicament…</string>
+    <string name="search_button">Rechercher</string>
+    <string name="search_empty_title">Recherchez vos médicaments</string>
+    <string name="search_empty_description">Entrez le nom d\'un médicament pour vérifier sa disponibilité et recevoir des alertes en cas de rupture.</string>
+
+    <!-- Status Labels -->
+    <string name="status_available">Disponible</string>
+    <string name="status_tension">Tension</string>
+    <string name="status_rupture">Rupture</string>
+    <string name="status_unknown">Inconnu</string>
+
+    <!-- Medication Details -->
+    <string name="laboratory">Laboratoire</string>
+    <string name="active_ingredient">Principe actif</string>
+    <string name="dosage">Dosage</string>
+    <string name="form">Forme</string>
+
+    <!-- Alternatives -->
+    <string name="alternatives_title">Alternatives disponibles</string>
+    <string name="alternatives_empty">Aucune alternative trouvée</string>
+    <string name="match_generic">Générique</string>
+    <string name="match_same_ingredient">Même principe actif</string>
+    <string name="match_similar">Similaire</string>
+
+    <!-- Pharmacies -->
+    <string name="pharmacies_title">Pharmacies à proximité</string>
+    <string name="pharmacies_empty">Aucune pharmacie trouvée</string>
+    <string name="pharmacy_on_duty">De garde</string>
+    <string name="pharmacy_available">Disponible</string>
+    <string name="pharmacy_not_confirmed">Non confirmé</string>
+    <string name="action_call">Appeler</string>
+    <string name="action_directions">Itinéraire</string>
+    <string name="action_report">Signaler</string>
+
+    <!-- Alerts Screen -->
+    <string name="alerts_title">Mes Alertes</string>
+    <string name="alerts_empty_title">Aucune alerte active</string>
+    <string name="alerts_empty_description">Recherchez un médicament et activez une alerte pour être notifié dès qu\'il redevient disponible.</string>
+    <string name="enable_notifications">Activer les notifications</string>
+    <string name="create_alert">Créer une alerte</string>
+    <string name="delete_alert">Supprimer l\'alerte</string>
+
+    <!-- Map Screen -->
+    <string name="map_title">Pharmacies</string>
+    <string name="map_info_title">Carte des pharmacies</string>
+    <string name="map_info_description">Sélectionnez un médicament pour voir les pharmacies qui l\'ont en stock.</string>
+    <string name="stock_available">Stock disponible</string>
+    <string name="stock_not_confirmed">Non confirmé</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">Profil</string>
+    <string name="section_account">Compte</string>
+    <string name="section_notifications">Notifications</string>
+    <string name="section_family">Famille &amp; Aidants</string>
+    <string name="section_info">Informations</string>
+    <string name="login_create_account">Se connecter / Créer un compte</string>
+    <string name="push_notifications">Notifications push</string>
+    <string name="email_alerts">Alertes par email</string>
+    <string name="family_mode">Mode Famille</string>
+    <string name="manage_profiles">Gérer les profils</string>
+    <string name="about">À propos</string>
+    <string name="ansm_website">Site de l\'ANSM</string>
+    <string name="version">Version %1$s</string>
+    <string name="data_source">Données issues de l\'ANSM</string>
+
+    <!-- Errors -->
+    <string name="error_network">Erreur de connexion. Veuillez réessayer.</string>
+    <string name="error_loading">Erreur lors du chargement</string>
+    <string name="error_location">Impossible d\'obtenir votre position</string>
+
+    <!-- Common -->
+    <string name="loading">Chargement…</string>
+    <string name="retry">Réessayer</string>
+    <string name="cancel">Annuler</string>
+    <string name="confirm">Confirmer</string>
+    <string name="close">Fermer</string>
+</resources>
